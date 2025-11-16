@@ -36,3 +36,36 @@ Este projeto não é uma aplicação para produção, mas sim um **exercício pr
 - Entender **migrations e versionamento de banco de dados**  
 - Testar endpoints de API e validar integração entre sistema e banco
 
+---
+
+
+## Diagrama da arquitetura 
+
+
+                    ┌───────────────────┐
+                    │     Frontend      │
+                    │ (Postman, curl)  │
+                    └─────────┬────────┘
+                              │
+                              ▼
+                    ┌───────────────────┐
+                    │    Backend Node   │
+                    │  Express + Prisma │
+                    │  index.js         │
+                    └─────────┬────────┘
+                              │
+            ┌─────────────────┴─────────────────┐
+            ▼                                   ▼
+    ┌───────────────┐                   ┌───────────────┐
+    │     Users     │                   │  Reservations │
+    │  id, name,    │◄───userId────────│ id, date, user│
+    │  email, ...   │                   │ ...           │
+    └───────────────┘                   └───────────────┘
+            ▲
+            │
+    ┌───────────────┐
+    │  PostgreSQL   │
+    │ Container DB  │
+    │ Docker Volume │
+    └───────────────┘
+
